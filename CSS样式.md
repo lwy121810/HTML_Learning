@@ -1067,3 +1067,170 @@ css代码：
 
 ```
 这种方法相比第一种方法的优势是不用增加无语义标签，但也存在着一些问题：它将块状元素的 display 类型改为 inline，变成了行内元素，所以少了一些功能，比如设定长度值。
+
+### 水平居中总结-不定宽块状元素方法（三）
+除了前两节讲到的插入table标签，以及改变元素的display类型，可以使不定宽块状元素水平居中之外，本节介绍第3种实现这种效果的方法，设置浮动和相对定位来实现。
+
+方法三：通过给父元素设置 float，然后给父元素设置 position:relative 和 left:50%，子元素设置 position:relative 和 left: -50% 来实现水平居中。
+
+我们可以这样理解：假想ul层的父层（即下面例子中的div层）中间有条平分线将ul层的父层（div层）平均分为两份，ul层的css代码是将ul层的最左端与ul层的父层（div层）的平分线对齐；而li层的css代码则是将li层的平分线与ul层的最左端（也是div层的平分线）对齐，从而实现li层的居中。
+
+ 
+
+代码如下：
+
+```
+<body>
+<div class="container">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+    </ul>
+</div>
+</body>
+```
+
+css代码：
+
+```
+<style>
+.container{
+    float:left;
+    position:relative;
+    left:50%
+}
+
+.container ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    
+    position:relative;
+    left:-50%;
+}
+.container li{float:left;display:inline;margin-right:8px;}
+</style>
+
+```
+
+### 垂直居中 --父元素高度确定的单行文本
+我们在实际工作中也会遇到需要设置垂直居中的场景，比如好多报纸的文章标题在左右一侧时，常常会设置为垂直居中，为了用户体验性好。
+
+这里我们又得分两种情况：父元素高度确定的单行文本，以及父元素高度确定的多行文本。
+
+**父元素高度确定的单行文本**的竖直居中的方法是设置父元素的**height**和**line-height**高度一致来实现的。（**height**：该元素的高度。**line-height**：行高（行间距），指在文本中，行与行之间的距离）。
+
+**line-hight**和**font-size**的计算值之差，在CSS中成为“行间距”。分为两半，分别加到一个文本行内容的顶部和底部。
+
+如下代码：
+
+```
+<div class="container">
+    hellow， world!
+</div>
+
+```
+css代码：
+
+```
+<style>
+.container{
+    height:60px;
+    line-height:60px;
+    background:#999;
+}
+</style>
+```
+
+### 垂直居中-父元素高度确定的多行文本（方法一）
+父元素高度确定的多行文本、图片等的竖直居中的方法有两种：
+
+方法一：使用插入 table  (包括tbody、tr、td)标签，同时设置 vertical-align：middle。
+
+css 中有一个用于竖直居中的属性 vertical-align，在父元素设置此样式时，会对inline-block类型的子元素都有用。下面看一下例子：
+
+html代码：
+
+```
+<body>
+<table><tbody><tr><td class="wrap">
+<div>
+    <p>看我是否可以居中。</p>
+</div>
+</td></tr></tbody></table>
+</body>
+```
+
+css代码：
+
+```
+table td{height:500px;background:#ccc}
+```
+
+因为 td 标签默认情况下就默认设置了 vertical-align 为 middle，所以我们不需要显式地设置了。
+
+###垂直居中-父元素高度确定的多行文本（方法二）
+
+除了上一节讲到的插入table标签，可以使父元素高度确定的多行文本垂直居中之外，本节介绍另外一种实现这种效果的方法。但这种方法兼容性比较差，只是提供大家学习参考。
+
+在 chrome、firefox 及 IE8 以上的浏览器下可以设置块级元素的 display 为 table-cell（设置为表格单元显示），激活 vertical-align 属性，但注意 IE6、7 并不支持这个样式, 兼容性比较差。
+
+html代码：
+
+```
+<div class="container">
+    <div>
+        <p>看我是否可以居中。</p>
+        <p>看我是否可以居中。</p>
+        <p>看我是否可以居中。</p>
+    </div>
+</div>
+```
+
+css代码：
+
+```
+<style>
+.container{
+    height:300px;
+    background:#ccc;
+    display:table-cell;/*IE8以上及Chrome、Firefox*/
+    vertical-align:middle;/*IE8以上及Chrome、Firefox*/
+}
+</style>
+```
+
+这种方法的好处是不用添加多余的无意义的标签，但缺点也很明显，它的兼容性不是很好，不兼容 IE6、7而且这样修改display的block变成了table-cell，破坏了原有的块状元素的性质。
+
+### 隐性改变display类型
+
+当为元素（不管之前是什么类型元素（display：none除外））设置以下两句之一
+
+
+1. `position:absolute`
+2. `float:left`或`float:right`
+
+
+html代码中只要出现以上两句之一，元素的display显示类型就会自动变为`display:inline-block`的方式显示，就可以设置元素的width和height了，且默认宽度不占满父元素。
+
+如下面的代码，小伙伴们都知道 a 标签是 行内元素 ，所以设置它的 width 是 没有效果的，但是设置为 position:absolute 以后，就可以了。
+
+```
+<div class="container">
+    <a href="#" title="">进入课程请单击这里</a>
+</div>
+
+```
+
+css代码
+
+```
+<style>
+.container a{
+    position:absolute;
+    width:200px;
+    background:#ccc;
+}
+</style>
+```
