@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js第二天学习</title>
+		<summary>
+			主要学习内容：
+			JS对象创建
+			JS带参数的函数
+		</summary>
+	</head>
+	<body>
+		
+	<h1>创建javaScript对象</h1>
+	<script>
+		student=new Object();
+		student.name="bob"
+		student.age = 56;
+		student.eyecolor="blue";
+		document.write(student.name + " is " + student.age + " years old");
+	</script>
+	<hr />
+	
+	<h1>带有参数的函数</h1>
+	
+	<script>
+		function twoArgumentsFunc(name, job)
+		{
+			alert("welcome " + name + ", the " + job);
+		}
+	</script>
+	
+	<button type="button" onclick="twoArgumentsFunc('Bill Gates', 'CEO')">带有参数的按钮点击</button>
+	<hr />
+	
+	<h1> 带有返回值的函数</h1>
+	
+	<p>本例调用的函数会执行一个计算，然后返回结果：</p>
+	
+	<p id="sum"></p>
+	<script>
+		function sumWithTwoNumber (a,b)
+		{
+			return a + b;
+		}
+		document.getElementById("sum").innerHTML=sumWithTwoNumber(4,3);
+	</script>
+	</body>
+</html>

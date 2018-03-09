@@ -269,7 +269,7 @@ HTML代码注释语法：
 ```
 <form>
   姓名：
-  <input type="text" name="myName">
+  <input type="text" name="myName"">
   <br/>
   密码：
   <input type="password" name="pass">
