@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JavaScript 错误 - Throw、Try 和 Catch</title>
+	</head>
+	<body>
+		<h1>Throw、Try 和 Catch</h1>
+		<p>
+			try 语句测试代码块的错误。<br /><br />
+			catch 语句处理错误。<br /><br />
+			throw 语句创建自定义错误。<br /><br />
+		</p>
+				<hr />
+		<p>
+			
+			<strong>错误一定会发生</strong>
+			当 JavaScript 引擎执行 JavaScript 代码时，会发生各种错误：<br /><br />
+			
+				<ul>
+					<li>
+					可能是语法错误，通常是程序员造成的编码错误或错别字。
+					</li>
+					<li>
+					可能是拼写错误或语言中缺少的功能（可能由于浏览器差异）。
+					</li>
+					<li>
+					可能是由于来自服务器或用户的错误输出而导致的错误
+					</li>
+					<li>
+					当然，也可能是由于许多其他不可预知的因素。
+					</li>
+				</ul>
+				
+			
+		</p>
+		
+				<hr />
+				<p>
+					<strong>JavaScript 抛出错误</strong><br /><br />
+					当错误发生时，当事情出问题时，JavaScript 引擎通常会停止，并生成一个错误消息。<br /><br />
+					描述这种情况的技术术语是：JavaScript 将抛出一个错误。
+				</p>
+				<hr />
+				
+				<p>
+					<h3>JavaScript 测试和捕捉</h3>
+					try 语句允许我们定义在执行时进行错误测试的代码块。<br /><br />
+					catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。<br /><br />
+					JavaScript 语句 try 和 catch 是成对出现的<br /><br />
+					语法<br /><br />
+					
+					<code>
+						try<br />
+						 {<br />
+						 	//在这里运行代码<br />
+						 }<br />
+						 catch(err)<br />
+						 {<br />
+						 	 //在这里处理错误<br />
+						 }<br />
+					</code>
+				</p>
+				
+				<p>
+					在下面的例子中，我们故意在 try 块的代码中写了一个错字。
+catch 块会捕捉到 try 块中的错误，并执行代码来处理它。
+				</p>
+				<script>
+					var txt ="";
+					function message() {
+						try{
+							adddlert("welcome guest");
+						}catch(e){
+							//TODO handle the exception
+							txt = "本页有一个错误。\n\n";
+							txt += "错误描述：" + e.message + "\n\n";
+							txt += "点击确定继续 \n\n"
+							alert(txt);
+						}
+					}
+				</script>
+				
+				<input type="button" onclick="message()" value="查看消息" />
+				
+				
+				<h1>Throw 语句</h1>
+				<p>
+				throw 语句允许我们创建自定义错误。<br /><br />
+				正确的技术术语是：创建或抛出异常（exception）。<br /><br />
+				如果把 throw 与 try 和 catch 一起使用，那么您能够控制程序流，并生成自定义的错误消息。
+				</p>
+				
+				<p>
+					语法:
+					<code>
+						throw exception
+					</code>
+				</p>
+				<strong>异常可以是JavaScript字符串，数字，逻辑值或对象</strong>
+				
+				<p>请输入5 ～ 10 的数字</p>
+				<input type="text" id="textId"/>
+				<button type="button" onclick="throwFunction()">测试输入值</button>
+				<p id="messageId"></p>
+				<script>
+					function throwFunction() {
+						try{
+							var x = document.getElementById("textId").value;
+							if (x == "") throw "值为空";
+							if (isNaN(x)) throw "不是数字";
+							if (x > 10) throw "大于10了";
+							if (x < 5) throw "小于5了"
+						}catch(e){
+							//TODO handle the exception
+							var y = "错误信息: " + e;
+							var z = document.getElementById("messageId");
+							z.innerHTML = y;
+						}
+					}
+				</script>
+				请注意，如果 getElementById 函数出错，上面的例子也会抛出一个错误。
+				
+				<h1>JavaScript 表单验证</h1>
+				
+				<p>
+					<strong>
+						JavaScript 可用来在数据被送往服务器前对 HTML 表单中的这些输入数据进行验证。
+					</strong>
+				</p>
+				<hr />
+				
+				<h3>
+					JavaScript 表单验证
+				</h3>
+				JavaScript 可用来在数据被送往服务器前对 HTML 表单中的这些输入数据进行验证<br /><br />
+				被JavaScript验证的典型数据表单数据有：<br /><br />
+				<ul>
+					<li>	用户是否已填写表单中的必填项目？</li>
+					<li>用户输入的邮件地址是否合法</li>
+					<li>用户是否已输入合法的日期</li>
+					<li>用户是否在数据域中输入了文本</li>
+				</ul>
+				<hr />
+				
+				<script type="text/javascript">
+					function validate_required(field,alerttxt) 
+					{
+						with (field){
+							if (value==null || value =="") {
+								alert(alerttxt);
+								return false;
+							}
+							else {
+								return true;
+							}
+						}
+					}
+					
+					function validate_form (thisform) {
+						with (thisform){
+							if (validate_required(email,"Email must be filled out!") == false) {
+								email.focus();
+								return false;
+							}
+						}
+					}
+				</script>
+				
+				<form action="submitpage.htm"  onsubmit="return validate_form(this)" method="post">
+					Email: <input type="text" name="email" size="30" />
+					<input type="submit" value="验证"/>
+				</form>
+	</body>
+</html>
