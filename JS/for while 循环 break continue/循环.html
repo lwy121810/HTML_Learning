@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS循环</title>
+	</head>
+	<body>
+		<h1>for 循环</h1>
+		<script>
+			cars = ["BWM","Volvo","Saab","Ford"];
+			for (var i = 0; i < cars.length; i++) {
+				document.write(cars[i] + "<br />");
+			}
+		</script>
+		<hr />
+		
+
+		<p>点击下面的按钮，将代码循环5次</p>
+		<button onclick="for1Log()">点击开始循环5次</button>
+		
+		<p id="for1"></p>
+		
+		<script>
+			function for1Log() { 
+				var txt = "";
+				for (var i = 0; i < 5; i++) {
+					txt = txt + "This is number" + i + "<br>";
+				}
+			document.getElementById("for1").innerHTML=txt;
+			}
+		</script>
+		<hr />
+		
+		<h1>for in 循环</h1>
+		<p>点击下面的按钮，循环遍历对象 "person" 的属性。</p>
+		
+		<button onclick="traversePropertys()">点击这里，遍历属性</button>
+		<p id="person"></p>
+		
+		<script>
+			function traversePropertys(){
+				var txt = "";
+				var x;
+				var person = {fname:"bill", lname:"gates",age:56};
+				for ( x in person) {
+					txt = txt +" " + person[x];
+				}
+				
+				document.getElementById("person").innerHTML=txt;
+			}
+		</script>
+		<hr />
+		<h1> While循环</h1>
+		<p>
+			<strong>只要指定条件为 true，循环就可以一直执行代码。</strong>
+		</p>
+		
+		<p>点击下面的按钮，循环5次</p>
+		<button onclick="whileLog()">点击这里打印</button>
+		<p id="whileLog"></p>
+		<script>
+			function whileLog () {
+			var x = "", i = 0;
+			while (i < 5){
+				x = x + "This is number " +i + "<br>";
+				i++;
+			}
+			document.getElementById("whileLog").innerHTML = x;
+			}
+		</script>
+		
+		  <h1>do while 循环</h1>
+		  
+  <p>点击下面的按钮，只要 i 小于 5 就一直循环代码块。</p>
+<button onclick="dowhileLog()">点击这里</button>
+
+		  <p id="dowhileId"></p>
+		  
+		  <script>
+		  	function dowhileLog() {
+		  		var x = "",i=0;
+		  		do {
+		  			 x=x + "The number is " + i + "<br>";
+		  			 i++;
+		  		}
+		  		while (i < 5)
+		  		document.getElementById("dowhileId").innerHTML = x;
+		  	}
+		
+		  </script>
+		  
+		  <h1>JavaScript Break 和 Continue 语句</h1>
+		  <p>
+		  	<strong>
+		  break 语句用于跳出循环。continue 用于跳过循环中的一个迭代。
+		  </strong>
+		  </p>
+		  
+		  
+		  <p>
+		  	break 语句可用于跳出循环。
+break 语句跳出循环后，会继续执行该循环之后的代码（如果有的话）：
+		  </p>
+		  <button onclick="breakFunction()">点击这里</button>
+		  <p id="breakId"></p>
+		
+		<script>
+		  	function breakFunction() 
+		  	{
+		  		var x ="", i=0;
+		  		for (i=0;i<10;i++)
+		  		{
+		  			if (i==3) 
+		  			{
+		  				break;
+		  			}
+		  			x = x + "the number is" + i + "<br>";
+		  		}
+		  		
+		  	document.getElementById("breakId").innerHTML=x;
+		  	}
+		</script>
+		
+		<p>
+			<strong>
+				continue 语句中断循环中的迭代，如果出现了指定的条件，然后继续循环中的下一个迭代。
+			</strong>
+			<br />
+			
+			这里跳出了 等于 3 的打印
+		</p>
+		<button onclick="continueFunction()">点击这里</button>
+		<p id="continueId"></p>
+		<script>
+			function continueFunction() {
+				var x ="",i=0;
+				for (i=0;i<10;i++) {
+					if (i == 3) {
+						continue;
+					}
+					x = x + "the number is " + i + "<br>";
+				}
+				document.getElementById("continueId").innerHTML = x;
+			}
+		</script>
+		
+		<h1>JavaScript 标签</h1>
+		<p>
+			javaScript语句可以进行标记
+			如需标记 JavaScript 语句，请在语句之前加上冒号：
+			<br /><br />
+			
+			<code>
+			label:
+			语句
+			</code>
+			<br /><br />
+			<strong>
+				break 和 continue 语句仅仅是能够跳出代码块的语句。
+			</strong>
+			<br /><br />
+			语法：<br />
+			
+			<code>
+				break labelname;
+				continue labelname;
+			</code>
+			<br /><br />
+			continue语句（带或不带标签引用）只能在循环中使用<br /><br />
+			break语句（不带标签引用），只能在循环或者switch中。<br /><br />
+			通过标签引用，break语句可用于跳出任何JavaScript代码块<br /><br />
+		</p>
+		
+		<script>
+			cars=["BMW","Volvo","Saab","Ford"];
+			list:
+			{
+				document.write(cars[0] + "<br />");
+				document.write(cars[1] + "<br />");
+				document.write(cars[2] + "<br />");
+				break list;
+				
+				document.write(cars[3] + "<br />");
+				document.write(cars[4] + "<br />");
+				document.write(cars[5] + "<br />");
+			}
+		</script>
+	</body>
+</html>
