@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body onload="alert('页面数据加载完毕')">
+		<h1>DOM 简介</h1>
+		<p>
+			通过 HTML DOM，可访问 JavaScript HTML 文档的所有元素。
+		</p>
+		<p>
+			通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。
+			<ul>
+				<li>JavaScript 能够改变页面中的所有 HTML 元素</li>
+				<li>JavaScript 能够改变页面中的所有 HTML 属性</li>
+				<li>JavaScript 能够改变页面中的所有 CSS 样式</li>
+				<li>JavaScript 能够对页面中的所有事件做出反应</li>
+			</ul>
+		</p>
+		<hr />
+		<h2>查找 HTML 元素</h2>
+		<p>通过 JavaScript操作 HTML 元素首先找到该元素</p>
+		<ul>
+			<li>通过 id 找到 HTML 元素</li>
+			<li>通过标签名找到 HTML 元素</li>
+			<li>通过类名找到 HTML 元素</li>
+		</ul>
+		<hr />
+		<h2>通过 id 查找 HTML 元素</h2>
+		<p>在 DOM 中查找 HTML 元素的最简单的方法，是通过使用元素的 id。</p>
+		
+		<p id="elementId">通过id 查找HTML元素</p>
+		
+		<script>
+			var x = document.getElementById("elementId");
+			document.write("<p>id='elementId'的段落文本内容为 : " + x.innerHTML + "</p>" );
+		</script>
+		
+		<p>
+			如果找到该元素，则该方法将以对象（在 x 中）的形式返回该元素。<br />
+			如果未找到该元素，则 x 将包含 null。
+		</p>
+		<hr />
+		<h2>通过标签查找HTML元素</h2>
+		
+		<pre>
+			var x=document.getElementById("main");
+			var y=x.getElementsByTagName("p");
+		</pre>
+		
+		<div id="main">
+			<p>the DOM is very useful!</p>
+			<p>通过<b>getElementsByTagName</b>方法查找元素</p>
+		</div>
+		
+		<script>
+			var x = document.getElementById("main");
+			var y = x.getElementsByTagName("p");
+			document.write("id 为 main的div中的第一段文字是：" + y[0].innerHTML);
+		</script>
+		
+		<hr />
+		
+		<h1>JavaScript HTML DOM - 改变 HTML</h1>
+		
+		<h2>HTML DOM允许JavaSCript 改变HTML元素的内容</h2>
+		<hr />
+		
+		<h2>改变HTML输入流</h2>
+		
+		<p>
+			JavaScript能够创建动态的HTML内容；
+		</p>
+		
+		<script>
+			document.write(Date());
+		</script>
+		<p> 提示： 不要在文档加载之后使用document.write()。这会覆盖文档</p>
+		<hr />
+		
+		<h2>改变HTML内容</h2>
+		<p> 修改HTML内容最简单的方法就是使用innerHTML属性</p>
+		如需改变 HTML 元素的内容，请使用这个语法：
+		
+		<blockquote>
+			document.getElementById(id).innerHTML=new HTML
+		</blockquote>
+		
+		<h2 id="h2">Old Header</h2>
+		<script>
+			document.getElementById("h2").innerHTML = "New Header";
+		</script>
+		
+		<p> "Old Header" 已被修改为 "New Header"</p>
+		<hr />
+		
+		<h1>改变HTML属性</h1>
+		如需改变 HTML 元素的属性，请使用这个语法：
+		<blockquote>
+			document.getElementById(id).attribute=new value
+		</blockquote>
+		<img id="image1" src="img/HBuilder.png" />
+		<script>
+			document.getElementById("image1").src="http://pic.baike.soso.com/p/20131209/20131209122020-590943603.jpg";
+		</script>
+		<p>原始图片是一个图标，现在改为哆啦</p>
+		<hr />
+		<h1> JavaScript HTML DOM - 改变 CSS</h1>
+		<strong>HTML DOM 允许 JavaScript 改变 HTML 元素的样式。</strong>
+		<hr />
+		
+		<h2>改变HTML样式</h2>
+		如果需要改变HTML元素的样式，使用这个语法：
+		
+		<blockquote>
+			document.getElementById(id).style.property=new style
+		</blockquote>
+		
+		<p id="css_p1">Hello World!</p>
+		<p id="css_p2">Hello World!</p>
+		<script>
+			document.getElementById("css_p2").style.color="blue";
+			var style = document.getElementById("css_p2").style;
+			style.fontFamily="arial";
+			style.fontSize="large";
+		</script>
+		<p>上面的段落已被一段脚本修改。</p>
+		
+		<h2 id="css_h2">这是一个要改变的标题</h2>
+		<button onclick="changeH2()">点击改变标题</button>
+		<script>
+			function changeH2() {
+				document.getElementById("css_h2").innerHTML="这是新的标题";
+				document.getElementById("css_h2").style.color="blue";
+			}
+		</script>
+		
+		<p id="css_p3">这是一段文本</p>
+		
+		<input type="button" value="隐藏文本" onclick="document.getElementById('css_p3').style.visibility='hidden'" />
+		<input type="button" value="显示文本" onclick="document.getElementById('css_p3').style.visibility='visible'" />
+		<hr />
+		
+		<h1>JavaScript HTML DOM 事件</h1>
+		<p> <strong>
+			HTML DOM 使 JavaScript 有能力对 HTML 事件做出反应。
+		</strong></p>
+		<hr />
+		
+		<h2>对事件做出反应</h2>
+		<p>
+			我们可以在事件发生时执行JavaScript，比如当用户在 HTML 元素上点击时。<br />
+			如需在用户点击某个元素时执行代码，请向一个 HTML 事件属性添加 JavaScript 代码：
+			
+			<blockquote>
+				onclick=JavaScript
+			</blockquote>
+			
+		</p>
+		HTML 事件的例子
+		<ul>
+			<li>当用户点击鼠标时</li>
+			<li>当网页已加载时</li>
+			<li>当图像已加载时</li>
+			<li>当鼠标移动到元素上时</li>
+			<li>当输入字段被改变时</li>
+			<li>当提交 HTML 表单时</li>
+			<li>当用户触发按键时</li>
+		</ul>
+		
+		<script>
+			function changetext(id) {
+				id.innerHTML='Thanks!';
+			}
+		</script>
+		<h2 onclick="changetext(this)">请点击这个标题</h2>
+		
+		<h2 onclick="this.innerHTML='OK'">点击我变成ok</h2>
+		
+		<hr />
+		
+		<h2>HTML事件属性</h2>
+		如果需要向HTML元素分配事件，可以使用事件属性
+		<br />
+		比如向button元素分配onclick事件
+		
+	
+		
+		
+		<script>
+			function displayDate() {
+				document.getElementById("buttonActionId").innerHTML = Date();
+			}
+		</script>
+		<p id="buttonActionId">这里会打印当前时间</p>
+		<button onclick="displayDate()">点击这里</button>
+		<hr />
+		
+		<h1> 使用HTML DOM 分配事件</h1>
+		<p>
+			HTML DOM允许通过Javacript向HTML元素分配事件
+		</p>
+		
+		<button id="distributionId">点击这里</button>
+		
+		<script>
+			document.getElementById("distributionId").onclick=function(){logDate()};
+			
+			function logDate () {
+				document.getElementById("myBtnid").innerHTML=Date();
+			}
+		</script>
+		<p id="myBtnid"></p>
+		<hr />
+		<h2>onload 和 onunload事件</h2>
+		<p>
+		onload 和 onunload事件会在用户进入或者离开页面时触发<br />
+		onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息加载正确的网页版本<br />
+		onload 和 onunload事件可以用来处理cookie<br />
+		</p>
+		
+		<script type="text/javascript">
+			function checkCookie () {
+				if (navigator.cookieEnabled == true) {
+					alert("已启用cookie")
+				} else{
+					alert("没有启用cookie")
+				}
+			}
+		</script>
+		<button onclick="checkCookie()">检测是否启用了cookie</button>
+		<hr />
+		<h2>onchange 事件</h2>
+		<p>
+			onchange 事件常结合对输入自腐案的验证来使用。
+		</p>
+		<script>
+			function upperCase() {
+				var text = document.getElementById("input_onchange_id");
+				text.value = text.value.toUpperCase();
+			}
+		</script>
+		输入英文字符:<input id="input_onchange_id" type="text" onchange="upperCase()" />
+		<p>当离开输入框时。输入框文本会变为大写</p>
+		<hr />
+		
+		<h2>onmouseover 和 onmouseout事件</h2>
+		<p>
+		onmouseover 事件和onmouseout事件可用于用户鼠标移至HTML元素上方或者移出元素时触发
+		</p>
+		<div id="mouse_div_id" onmouseover="mouseover(this)" onmouseout="mouseout(this)"
+			style="background-color: green;color: white; width: 200px;height: 50px;">
+			把鼠标放上来
+		</div>
+		<script>
+			function mouseover(obj) {
+				obj.innerHTML="Thanks"
+			}
+			
+			function mouseout (obj) {
+				obj.innerHTML="把鼠标放上来"
+			}
+		</script>
+		<hr />
+		<h2>onmousedown、onmouseup、onclick事件</h2>
+		<p>
+			onmousedown、onmouseup、onclick事件构成了鼠标点击事件的所有部分。当点击鼠标时，会触发
+			onmousedown事件，当松开鼠标时会触发onmouseup事件，当完成鼠标点击时会触发onclick事件
+		</p>
+		<div id="downup_div_id"  onmousedown="mDown(this)" onmouseup="mUp(this)"
+			 style="background-color: yellowgreen; width: 120px;height: 30px;color: white;">
+			点击鼠标
+		</div>
+		<script>
+			function mDown(obj) {
+				obj.style.backgroundColor="palegreen";
+				obj.innerHTML="释放鼠标"
+			}
+			function mUp(obj) {
+				obj.style.backgroundColor="green";
+				obj.innerHTML="点击鼠标"
+			}
+		
+		</script>
+		
+		<h3 onmouseover="style.color='red'" onmouseout="style.color='blue'">可以改变颜色的标题</h3>
+		<hr />
+		<h1>DOM 元素 （节点）</h1>
+		<p>
+			添加和删除节点（HTML元素）
+		</p>
+		
+		<h2>创建新的HTML元素</h2>
+		<p>
+		如果向HTML DOM 添加新的元素，首先创建该元素（元素节点），然后向一个已存在的元素追加该元素
+		</p>
+		
+		<div id="appendchildId">
+			<p id="append_p1">这是第一个段落</p>
+			<p id="append_p2">这是第二个段落</p>
+			
+		</div>
+		<script>
+			// 1. 创建新的元素<p>
+			var newP = document.createElement("p");
+			// 2. 如果要想新创建的<p>元素添加文本 需要创建文本节点
+			var node = document.createTextNode("这是新段落")
+			// 3. 把文本节点追加到新元素之后
+			newP.appendChild(node);
+			// 4. 向已存在的元素追加新元素newP
+			// 4.1 找到已存在的元素
+			var p2 = document.getElementById("appendchildId");
+			// 4.2 追加新元素
+			p2.appendChild(newP);
+			
+		</script>
+		可以看出，新增加元素的步骤：
+		<ol>
+			<li>
+				创建新元素
+				<code>var newP = document.createElement("p");</code>
+			</li>
+			<li>
+				创建文本节点
+				<code>
+					var node = document.createTextNode("这是新段落")
+				</code>
+			</li>
+			
+			<li>
+			向新创建的元素追加文本节点
+			<code>
+				newP.appendChild(node);
+			</code>
+			</li>
+			
+			<li>
+					找到已存在的元素
+				<code>
+					var p2 = document.getElementById("appendchildId");
+				</code>
+			</li>
+			
+			<li>
+				向已有的元素追加新元素：
+				<code>
+					p2.appendChild(newP);
+				</code>
+			</li>
+		</ol>
+		
+		<hr />
+		
+		<h2>删除已有的HTML元素</h2>
+		删除HTML元素，必须获取该元素的父元素
+		
+		<div id="removeid">
+			<p id="remove_p1">这是第一个段落</p>
+			<p id="remove_p2">这是第二个段落</p>
+		</div>
+		
+		<script>
+			function removeElem() {
+				var parent = document.getElementById("removeid");
+				var child = document.getElementById("remove_p1");
+				parent.removeChild(child);
+			}
+		</script>
+		<button onclick="removeElem()">点击删除第一个段落</button>
+	</body>
+</html>
