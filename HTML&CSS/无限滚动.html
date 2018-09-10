@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无限滚动</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            /*因为一次性显示两张 所以div的宽度为2张图片的宽度*/
+            width: 600px;
+            /*设置高度 这里的高度跟图片高度一致*/
+            height: 188px;
+            /*边框*/
+            border: 1px solid #000;
+            /*居中*/
+            margin: 0 auto;
+            /*距离顶部艰巨*/
+            margin-top: 100px;
+            /*隐藏*/
+            overflow: hidden;
+        }
+        ul{
+            /*显示的图片数量为4 为了在结束动画时返回效果不生硬 在ul后面多加了两张图片 又因为li标签是浮动的 而浮动的话如果父标签的宽度不够会另起一行显示 所以这里的宽度最少应该是6张图片的宽度 也就是1800px*/
+            width: 1800px;
+            height: 188px;
+            animation: move 10s linear 0s infinite normal;
+            background-color: black;
+        }
+        ul li{
+            list-style: none;
+            width: 300px;
+            height: 188px;
+            float: left;
+        }
+        /*鼠标悬停在ul上时 停止动画*/
+        ul:hover {
+            animation-play-state: paused;
+        }
+        /*鼠标悬停在ul上时，改变所有li的透明度*/
+        ul:hover li{
+            opacity: 0.5;
+        }
+        /*改变当前悬停的li的透明度 */
+        ul li:hover{
+            opacity: 1;
+        }
+
+        @keyframes move {
+            from{
+                margin-left: 0;
+            }
+            to{
+                /*
+                由于动画是从右到左 所以是负数
+                之所以是-1200px 是因为我们显示的图片数量为4 每张图片宽300px 4*300px就是1200px
+                */
+                margin-left: -1200px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--<div>-->
+    <!--<ul>-->
+        <!--<li><img src="images/banner1.png" alt=""></li>-->
+        <!--<li><img src="images/banner2.jpg" alt=""></li>-->
+        <!--<li><img src="images/banner3.jpg" alt=""></li>-->
+        <!--<li><img src="images/banner4.jpg" alt=""></li>-->
+        <!--<li><img src="images/banner1.png" alt=""></li>-->
+        <!--<li><img src="images/banner2.jpg" alt=""></li>-->
+    <!--</ul>-->
+<!--</div>-->
+<div>
+    <ul>
+        <li style="background-color: red"></li>
+        <li style="background-color: green"></li>
+        <li style="background-color: blue"></li>
+        <li style="background-color: yellow"></li>
+        <li style="background-color: red"></li>
+        <li style="background-color: green"></li>
+    </ul>
+</div>
+</body>
+</html>
