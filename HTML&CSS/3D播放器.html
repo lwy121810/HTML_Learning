@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D播放器</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: url("images/jacky/bg.jpg ") no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+        ul{
+            /*background-color: red;*/
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            margin-left: -100px;
+            bottom: 100px;
+            transform-style: preserve-3d;
+            transform: rotateX(-10deg);
+            animation: runloop 6s linear 0s infinite normal;
+        }
+        ul li{
+            list-style: none;
+            width: 200px;
+            height: 200px;
+            font-size: 60px;
+            text-align: center;
+            line-height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: black;
+        }
+        ul li img{
+            width: 200px;
+            height: 200px;
+            border: 5px solid skyblue;
+            box-sizing: border-box;
+        }
+        ul li:nth-child(1){
+            transform: rotateY(60deg) translateZ(200px);
+        }
+        ul li:nth-child(2){
+            transform: rotateY(120deg) translateZ(200px);
+        }
+        ul li:nth-child(3){
+            background-color: blue;
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        ul li:nth-child(4){
+            transform: rotateY(240deg) translateZ(200px);
+        }
+        ul li:nth-child(5){
+            transform: rotateY(300deg) translateZ(200px);
+        }
+        ul li:nth-child(6){
+            transform: rotateY(360deg) translateZ(200px);
+        }
+        .heart{
+            width: 173px;
+            height: 157px;
+            position: absolute;
+            left: 100px;
+            bottom: 100px;
+            animation: heartMove 10s linear 0s infinite normal;
+        }
+
+        /*鼠标悬停在ul上时 停止动画*/
+        ul:hover{
+            animation-play-state: paused;
+        }
+        /*设置悬停时的蒙版*/
+        ul:hover li img{
+            /*悬停在ul上时 设置img的透明度为0.5 此时会显示父元素的背景色*/
+            opacity: 0.5;
+        }
+        ul li:hover img{
+            /*设置悬停的li的图片的透明度*/
+            opacity: 1;
+        }
+        /*图片转动*/
+        @keyframes runloop {
+            from{
+                /*由于css的层叠性 在后面设置的属性会覆盖前面设置的 所以这里的transform会覆盖掉ul标签中transform: rotateX(-10deg); 会失去俯视效果 所以这里需要添加rotateX(-10deg)*/
+                /*注意：在编写动画中 固定不变的属性值写在前面 变化的值写在后面 否则动画会不符合预期*/
+                transform:rotateX(-10deg) rotateY(0deg);
+            }
+            to{
+                transform:rotateX(-10deg) rotateY(360deg);
+            }
+        }
+        @keyframes heartMove {
+            0%{
+                left: 100px;
+                bottom: 100px;
+                opacity: 1;
+            }
+            20%{
+                left: 300px;
+                bottom: 300px;
+                opacity: 0;
+            }
+            40%{
+                left: 500px;
+                bottom: 500px;
+                opacity: 1;
+            }
+            60%{
+                left: 800px;
+                bottom: 300px;
+                opacity: 0;
+            }
+            80%{
+                left: 1200px;
+                bottom: 100px;
+                opacity: 1;
+            }
+            100%{
+                left: 800px;
+                bottom: -200px;
+
+            }
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li><img src="images/jacky/1.png" alt=""></li>
+    <li><img src="images/jacky/2.jpg" alt=""></li>
+    <li><img src="images/jacky/3.jpg" alt=""></li>
+    <li><img src="images/jacky/4.gif" alt=""></li>
+    <li><img src="images/jacky/5.jpg" alt=""></li>
+    <li><img src="images/jacky/6.jpg" alt=""></li>
+</ul>
+<img src="images/jacky/xin.png" class="heart" alt="">
+<audio src="images/jacky/zxy.mp3" autoplay="autoplay" loop="loop"></audio>
+</body>
+</html>
