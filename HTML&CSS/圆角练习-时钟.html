@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圆角练习-时钟</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .clock{
+            width: 300px;
+            height: 300px;
+            border: 5px solid #000;
+            /*box-sizing: border-box;*/
+            margin: 100px auto;
+            border-radius: 50%;
+            position: relative;
+        }
+        .clock>div{
+            width: 10px;
+            height: 300px;
+            background-color: #ccc;
+            position: absolute;
+            left: 50%;
+            margin-left: -5px;
+        }
+        .clock>div:nth-child(1){
+            width: 20px;
+            margin-left: -10px;
+        }
+        .clock>div:nth-child(2){
+            transform: rotateZ(30deg);
+        }
+        .clock>div:nth-child(3){
+            transform: rotateZ(60deg);
+
+        }
+        .clock>div:nth-child(4){
+            transform: rotateZ(90deg);
+            width: 20px;
+            margin-left: -10px;
+
+        }
+        .clock>div:nth-child(5){
+            transform: rotateZ(120deg);
+
+        }
+        .clock>div:nth-child(6){
+            transform: rotateZ(150deg);
+        }
+        .clock>.cover{
+            width: 240px;
+            height: 240px;
+            background-color: white;
+            position: absolute;
+            left: 50%;
+            margin-left: -120px;
+            margin-top: 30px;
+            border-radius: 50%;
+        }
+        .clock>.hour{
+            height: 70px;
+            background-color: black;
+            bottom: 50%;
+        }
+        .clock>.minute{
+            height: 100px;
+            background-color: blue;
+            bottom: 50%;
+            transform: rotateZ(30deg);
+            transform-origin: bottom;
+        }
+        .clock>.second{
+            height: 140px;
+            background-color: red;
+            bottom: 50%;
+
+            transform: rotateZ(60deg);
+            transform-origin: bottom;
+        }
+        .clock>.dot{
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            left: 50%;
+            bottom: 50%;
+            margin-left: -15px;
+            margin-bottom: -15px;
+            border-radius: 50%;
+        }
+
+        .clock>.second{
+            animation: secondMove 60s linear 0s infinite normal;
+        }
+
+        .clock>.minute{
+            animation: minuteMove 3600s linear 0s infinite normal;
+        }
+        @keyframes secondMove {
+            from{
+                transform: rotateZ(60deg);
+            }
+            to{
+
+                transform: rotateZ(420deg);
+            }
+        }
+        @keyframes minuteMove {
+            from{
+                transform: rotateZ(30deg);
+            }
+            to{
+
+                transform: rotateZ(390deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="clock">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="cover"></div>
+    <div class="hour"></div>
+    <div class="minute"></div>
+    <div class="second"></div>
+    <div class="dot"></div>
+</div>
+</body>
+</html>
