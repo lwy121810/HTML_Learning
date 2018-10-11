@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS的样式</title>
+</head>
+<body>
+<!--<script>-->
+    <!--alert('这是一个弹框')-->
+<!--</script>-->
+<!--<script >-->
+    <!--// prompt("输入你的名字：");-->
+<!--</script>-->
+<!--<script>-->
+    <!--console.log('这是一个控制台输出');-->
+<!--</script>-->
+<script >
+    // console.error('错误输出！');
+    // console.warn("这是一个警告！！！");
+    // console.log(3+5);
+    // console.log('8');
+    // console.log(true);
+
+    // var name;
+    //
+    // name = '张三';
+    // console.log(name);
+    // console.log(typeof 10);
+
+    var maxNum = Number.MAX_VALUE;
+    // Infinity 无穷大 当超过最大值时会返回无穷大
+    console.log(maxNum + maxNum);
+    // 无穷小：-Infinity, 如果超过了最小值就会返回该值
+    console.log(Number.MIN_VALUE);
+    Boolean(0);
+
+    // 对于没有初始化的对象 都是Undefined类型 具体值为undefined
+    var num;
+    console.log(typeof num);// undefined
+
+    // null表示的是一个空的对象。所以使用typeof检查null会返回一个Object
+    var str = null;
+    console.log(typeof str);//object
+
+    // undefined值实际上是由null值衍生出来的，所以如果比较undefined和null是否相等，会返回true
+
+    var test1 = null;
+    var test2 = undefined;
+
+    // == 值比较 所以这里为true
+    console.log(test1 == test2);
+    // === 值和类型的比较 所以这里为false
+    console.log(test1 === test2);
+
+</script>
+
+<!-- 数据类型转换-->
+<script>
+    console.log('这是数据类型转换');
+
+    // 转字符串 调用 toString()方法
+
+    var num1 = 10;
+    var test1 = num1.toString();
+    console.log(test1);
+    console.log(typeof test1);
+
+    // null和undefined这两个值没有toString()方法，如果调用他们的方法，会报错
+    var str = null;
+    str.toString();// 控制台会报错
+
+</script>
+</body>
+</html>
