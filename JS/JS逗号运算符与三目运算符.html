@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逗号运算符与三目运算符</title>
+</head>
+<body>
+
+<!--
+逗号运算符
+求值过程：先算表达式1，再算表达式2，依次算到表达式n
+整个逗号表达式的值是最后一个表达式的值
+-->
+<script>
+    var a, b, c, d;
+    /*
+    1.先计算表达式1, a = 2
+    2.再计算表达式2, b = 12
+    3.再计算表达式3, c = 5
+    4.将表达式3的结果返回给d
+    */
+    d = (a = 1 + 1,b = 3 * 4, c = 10 / 2);
+    // d的值是由最后一个表达式返回的 也就是c表达式
+    console.log(d);// 5
+</script>
+
+<script>
+    //    用户从输入三个整数,找出最大值,然后输入最大值
+    //    1.定义三个变量, 用于保存用户输入的三个整数
+    var a, b, c;
+    //    2.利用window.prompt接收用户输入的数据
+    //    注意点: 通过prompt返回给我们的数据是String类型, 需要转换为Number
+    //    利用Number函数和+效果一样
+    a =  Number(window.prompt("请输入内容"));
+    b =  +(window.prompt("请输入内容"));
+    c =  +(window.prompt("请输入内容"));
+    //    3.定义一个变量保存最大值
+    var max;
+    /*
+//    4.利用三目运算符进行两两比较
+    max = a > b ? a : b; // 9 > 6 ? 9 : 6; max = 9;
+//    如果关系运算符两边都是字符串, 不会转换为数值, 而是比较Unicode码
+    max = max > c ? max : c; // 9 > 10 ? 9 : 10; max = 10;
+    */
+    // 企业开发中并不是代码越少越好,如下方式(a > b ? a : b)需要计算两次, 性能没有上面一种方式好, 并且阅读性也不如上面一种方式
+    max = (a > b ? a : b) > c ? (a > b ? a : b) : c;
+    console.log(max);
+
+</script>
+
+</body>
+</html>

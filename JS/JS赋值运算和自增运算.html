@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS赋值运算和自增运算</title>
+</head>
+<body>
+
+<!--
+赋值运算符是右结合性
+
+简单赋值运算符： =
+    * 简单赋值运算组成的赋值表达式 a = b = c = 10;
+
+复合赋值运算符：+= -= *= /= %=
+    * a *= 1 + 2
+    * 由于赋值运算符是右结合性 所以会先计算等号右边 然后在进行复合运算 也就是会先计算 1+2 然后在计算 乘法 也就是说等同于 a = a * (1 + 2);
+-->
+<script>
+    var  value = 5;
+    value *= 2 - 2;// 等同于 value = 5*(2-2); 也就是0 切记不是等于 5 * 2 - 2 = 8
+    console.log(value);// 0
+
+</script>
+
+<!--自增/自减-->
+<!--
+无论运算符号在前还是在后 变量在自身的基础上都会改变
+
+后缀表达：a-- a++ "先用 后变"，先用变量的值参与计算 然后变量在进行自增/自减
+
+前缀表达：--a, ++a "先用 后变" 变量的值先变化 然后再参与计算
+
+-->
+
+<script>
+    var a,b;
+    a = 10;
+    b = 20;
+
+    var res1 = (++a) + (++b);
+    console.log(res1);// 32
+    console.log(a);// 11
+    console.log(b);// 21
+
+    a = 10;
+    b = 20;
+
+    res1 = (a--) + (b--);
+    console.log(res1);// 30
+    console.log(a);// 9
+    console.log(b);// 19
+
+
+
+    var i=1;
+    i++;//2
+    var j = i++ ;// j= 2 i=3
+    console.log(i);// 3
+    console.log(j);// 2
+    j =++i ;// j= 4 i=4
+    console.log(i);//4
+    console.log(j);// 4
+    j = i--;// j=4 i=3
+
+    console.log(i);//3
+    console.log(j);//4
+
+
+    var i = 5, j = 5, p, q;
+    p=i++ + i++ + i++;
+    q = ++j + ++j+ ++j;
+
+    console.log(p);// 18
+    console.log(q);// 21
+</script>
+
+</body>
+</html>

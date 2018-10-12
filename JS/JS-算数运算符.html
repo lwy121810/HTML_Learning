@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS-算数运算符</title>
+</head>
+<body>
+
+<!--加法运算-->
+<!--
+对于非Number类型的运算 会将这些值转为Number在进行运算
+任何值和NaN做运算都是NaN
+任何值和字符串做加法运算 都会先转为字符串 然后再和字符串做拼串操作
+-->
+<script>
+    var res1 = true + 1;// 会先将ture转为数字 在进行加操作
+    console.log(res1);// 2
+    console.log(typeof res1);// number
+
+    var res2 = 1 + NaN;
+    console.log(res2);// NaN
+    console.log(typeof res2);// number
+
+    // 任何值和字符串做加法运算 都会得到字符串
+    var res3 = true + "abc" + 123;
+    console.log(res3); // trueabc123
+    console.log(typeof res3);// string
+</script>
+
+<!--减法运算-->
+<!--
+非Number类型的值进行运算时 会将这些值转为Number进行运算
+任何和NaN做运算 都会得到NaN
+字符串的减法运算 会先将字符串转为Number 在进行运算
+-->
+<script>
+    var res1 = true - 1;
+    console.log(res1);// 0
+
+    res1 = 2 - null;
+    console.log(res1);// 2
+
+    var res2 = 5 - NaN;
+    console.log(res2);// NaN
+
+    var res3 = "9" - "1";
+    console.log(res3);// 8 number
+
+</script>
+
+<!--乘法运算-->
+<!--
+跟减法规律一样
+非Number类型的数据 会先转成Number 在进行运算
+和NaN的运算都会得到NaN
+字符串的乘法会得到Number
+-->
+<script>
+    var res1 = true * "10";
+    console.log(res1);// 10
+    console.log(typeof res1);// number
+
+    var res2 = "10" * '20';
+    console.log(res2);// 200
+    console.log(typeof res2);// number
+
+</script>
+
+<!--除法运算-->
+<!--
+跟减法规律一致
+非Number类型的数据 会先转成Number 在进行运算
+和NaN的运算都会得到NaN
+字符串的除法会得到Number
+-->
+<script>
+    var res1 = "20" / "10";
+    console.log(res1);// 2
+    console.log(typeof res1);// number
+
+    var res2 = 2 / 0;
+    console.log(res2);// Infinity 无限大
+</script>
+
+<!--取余操作-->
+<!--
+m % n
+n等于0时 返回NaN
+其他规律跟减法一致
+-->
+<script>
+    var res1 = 5 % 0;
+    console.log(res1);// NaN
+</script>
+
+ <!--
+ * Tips: 可以通过为一个值 -0 *1 /1来将其转为Number
+ -->
+
+<!--正负号运算-->
+<!--
+正号
+    * 运算对Number类型的数据没有影响
+    * 对于非Number类型 会先将数据转为Number 然后在运算
+负号
+    * 负号可以对数字进行取反
+-->
+<script>
+    var res1 = +true;
+    console.log(res1);// 1
+
+    var res2 = + "100"
+    console.log(res2);// 100 number
+</script>
+
+
+</body>
+</html>
