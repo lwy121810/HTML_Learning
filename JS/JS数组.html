@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS数组</title>
+</head>
+<body>
+<!--
+数组的创建： 1.使用构造函数 2.使用字面量
+数组的的长度设置：可以使用length属性 可以通过修改数组的长度来改变元素中的个数，如果改小了，数组从后面删除元素
+-->
+
+<script>
+    // 1.使用构造函数
+    var arr1 = new Array();// 创建一个空数组
+    console.log(arr1);
+
+    var arr2 = new Array(20);// 创建一个长度为20的数组
+    console.log(arr2);
+
+    var arr3 = new Array(20,30,40);// 创建一个长度为3 内容为20 30 40 的数组
+    console.log(arr3);
+
+    // 2. 使用字面量创建数组
+
+    // 创建一个空数组
+    var arr4 = [];
+    console.log(arr4);
+
+    // 创建数组的时候直接存储内容
+    var arr5 = [30, 40,50,60];
+    console.log(arr5);
+
+    // 这里是数组长度为1 内容为30 而不是一个长度为30的数组
+    var arr6 = [30];
+    console.log(arr6);
+
+    // 数组可以存储任意数据类型的数据
+</script>
+
+<!--长度修改-->
+<script>
+    var arr1 = [];
+    arr1.length = 100;
+    console.log(arr1);// 数组的长度为100；
+
+    var arr2 = [1,2,3,4,5,6,7];
+    arr2.length = 10;
+    console.log(arr2);// arr2的长度为10
+    // js中打印超过数组边界下标的数据时 不会报错 会返回undefined
+    console.log(arr2[arr2.length]);// undefined
+
+
+    // var arr3 = [1,2,3,4,5,6,7];
+    // arr3.length = 4;
+    // console.log(arr3);// 长度为4 会删去后面的元素
+
+</script>
+
+<!--向数组存储数据-->
+<script>
+    //1 可以在数组初始化的时候存储数据
+    var per1 = ["李四","男", 18];
+    console.log(per1);
+
+    // 2 也可以通过下标赋值
+    var per2 = [];
+    per2[0] = "张三";
+    per2[1] = "男";
+    per2[2] = 19;
+    console.log(per2);
+</script>
+
+<!--数组的遍历-->
+<script>
+    var numbers = [10,1,9,22,89];
+    for (var i = 0; i < numbers.length; i++) {
+        var num = numbers[i];
+        if (num % 2 === 0) {
+            console.log(num);
+        }
+    }
+</script>
+
+<!--数组的常用方法-->
+<!--
+join(): 将数组中的内容链接为字符串，参数是可选的，默认是以逗号拼接内容，也可以传入参数 以参数作为分隔
+        会返回一个新的字符串 不会影响原来的数组
+
+-->
+<script>
+    var per1 = ["李四","男", 18];
+    // 数组转字符串
+    console.log(per1.join());// 李四,男,18
+    console.log(per1);
+
+    console.log(per1.join("*"));// 李四*男*18
+</script>
+
+<!--
+push(): 接收任意数量的参数，把它们逐个添加到数组的末尾，并返回修改后数组的长度
+pop(): 移除数组中的最后一项，减少数组的length的值，然后返回移除的项
+-->
+<script>
+    var arr = ['张三',"李四","王五"];
+    var count = arr.push("赵六");
+    console.log(count);// 4
+    console.log(arr);// "张三", "李四", "王五", "赵六"
+
+    var obj = arr.pop();
+    console.log(obj);// 赵六
+    console.log(arr);// "张三", "李四", "王五"
+</script>
+
+<!--
+shift(): 删除数组的第一项，并返回删除元素的值，如果数组为空，返回undefined
+unshift():将参数添加到数组的开头 并返回数组的长度
+-->
+<script>
+    var arr = ['张三',"李四","王五"];
+    var obj = arr.shift();
+    console.log(obj);// 张三
+    console.log(arr);//["李四", "王五"]
+
+
+    var count = arr.unshift("bob","tom");
+    console.log(count);// 4
+    console.log(arr);// ["bob", "tom", "李四", "王五"]
+</script>
+
+
+<!--
+reverse(): 将数组反转 会影响到原来的数组
+-->
+<script>
+    var arr = ['张三',"李四","王五"];
+    var obj = arr.reverse();
+    console.log(obj);// ["王五", "李四", "张三"]
+    console.log(arr);// ["王五", "李四", "张三"]
+</script>
+
+<!--
+concat():将参数添加到数组中(加入到数组的末尾)，该方法会将原数组copy一份，然后把数组添加到copy后数组的末尾，所以不会影响原数组
+-->
+<script>
+    var arr = ['张三',"李四","王五"];
+    var newarr = arr.concat("新加入的小伙伴");
+    console.log(arr);
+    console.log(newarr);//["张三", "李四", "王五", "新加入的小伙伴"]
+</script>
+
+<!--
+查找
+indexOf():从前往后寻找参数 返回从前往后查找时参数的下标
+lastIndexOf():从后往前寻找参数 返回从后往前查找时参数的下标
+
+如果查找时找不到，则会返回-1
+查找时不仅会比较值，还会比较类型
+
+-->
+<script>
+    var arr = ['张三',"李四","王五","赵六"];
+    console.log(arr.indexOf("李四"));// 1
+    console.log(arr.lastIndexOf("王五"));//2
+</script>
+</body>
+</html>
