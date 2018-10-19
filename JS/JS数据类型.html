@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS数据类型</title>
+</head>
+<body>
+
+<!-- JS中的数据类型
+* 简单(基本)数据类型
+        * Number String Boolean Undefined Null
+        * 直接存储值
+        * 存储在栈区
+
+* 复杂(引用)数据类型
+        * Object Array...
+        * 存储引用（可以理解为存储的是指针）
+        * 存储在堆区
+
+并不能直接访问堆区，堆区的地址指针存储在栈区 先访问栈区获取栈区的地址，然后通过地址访问堆区
+-->
+<script>
+
+    // 简单数据类型
+    // 简单数据类型的值直接存储在栈区 而且是值拷贝
+
+    var name = "张三";
+
+    // 这里是值拷贝 直接在栈区拷贝了一份"张三"存储 所以后续修改name之后并不会影响newName
+    var newName = name;
+
+    // 这里修改name 并不会影响newName
+    name = "李四";
+
+    console.log(name);// 李四
+    console.log(newName);// 张三
+
+
+    // 复杂数据类型 是指针拷贝
+    var obj = {name:"张三",age:18};
+    var newObj = obj;
+
+    // obj 和 newObj指向的堆区地址是一样的 所以当改变该地址的属性值的时候 两者都会改变
+
+    // 当改变obj的属性值 newObj的属性值也会改变
+    obj.name = "李四";
+
+    // 同理 改变newObj obj也会改变
+    newObj.name = "王无";
+
+    console.log(obj);// {name: "李四", age: 18}
+    console.log(newObj);// {name: "李四", age: 18}
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

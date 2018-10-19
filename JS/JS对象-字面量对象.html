@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象-字面量对象</title>
+</head>
+<body>
+
+<!--
+JS中常见的对象类型
+        * 字面量对象
+        * JSON
+        *
+-->
+
+<!-- 字面量对象
+对象的声明
+var 对象名 = {
+    属性名 : 属性值,
+    方法名 : 方法
+}
+-->
+<script>
+    var dog = {// 声明了一个dog对象
+        name : "旺财",
+        age : 10,
+        friend : ["大黑","小黑"],
+
+        // 方法
+        eat: function () {
+            console.log("啃骨头");
+        },
+
+        run : function () {
+            console.log("跑");
+        },
+    };
+    console.log(typeof dog);// object
+    console.log(dog);
+
+    // 修改属性的值
+    dog.name = "张三";
+    console.log(dog.name);
+
+    // 执行方法
+    dog.eat();
+
+
+    // 对象的遍历
+    // for (var i = 0;i<dog.length;i++){// 这种方式不能遍历对象
+    //     console.log(dog[i]);
+    // }
+
+    // 遍历属性的话 需要使用 forin
+    for (var key in dog) {
+        console.log(key);
+        console.log(dog[key]);
+    }
+
+</script>
+
+
+<!-- JSON
+JSON仅仅用于数据的传递
+什么是JSON:
+        * JavaScript Object Notation(符号，注释) JavaScript对象表示形式
+        * JavaScript的子集
+JSON和字面量的区别:
+        * JSON的属性必须用双引号引起来，字面量属性可以省略
+        * JSON本质是数据交换格式
+            * JSON有两种结构：对象和数组。两种结构相互组合从而形成各种数据结构
+-->
+<!--
+
+-->
+<script>
+
+    // JSON格式
+    /*
+    {
+        "name":"旺财",
+        "age":10,
+        "friend":["小黑","大黑"],
+    }
+    */
+
+// XML格式跟HTML格式一样
+    /*
+    <xml>
+            <name>旺财</name>
+            <age>10</age>
+    </xml>
+    */
+</script>
+
+</body>
+</html>

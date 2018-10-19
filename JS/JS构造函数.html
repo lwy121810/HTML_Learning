@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS构造函数</title>
+</head>
+<body>
+
+<!--
+构造函数跟普通函数的区别：普通函数不能产生对象 构造函数能够产生对象 即：凡是能够产生对象的函数都是构造函数
+
+构造函数: new Object()
+            * new后面调用函数 我们成为构造函数
+            * Object()我们把它视为一个构造函数，构造函数的本质是一个函数，只不过构造函数的目的是为了创建新对象，为新对象进行初始化设置(设置属性的值)
+
+
+-->
+<script type="text/html">
+    // 构造函数
+    // 约定：构造函数的名字首字母一般都大写
+    function Person() {
+        var obj = new Object();
+
+        // 属性
+        obj.name = null;
+        obj.age = null;
+        obj.sex = null;
+
+        // 方法
+        obj.study = function () {
+            console.log(this.name + "学习");
+        }
+
+        return obj;
+    }
+
+    var per = Person();
+    per.name = "张三";
+    per.age = 18;
+    per.sex = "男";
+    console.log(per);
+
+    // 调用方法
+    per.study();
+
+    var  per1 = Person();
+    console.log(per === per1);// false 通过构造函数产生的对象都是不相同的
+
+</script>
+
+<!-- this 关键字
+ * this所在的函数在那个对象中，this就代表那个对象
+ * 谁调用this就代表谁
+ * 构造函数中的this 始终代表new的当前对象
+-->
+
+
+
+<script type="text/html">
+
+    // 1.构造函数
+    function Dog(name,age,dogFriends) {
+        this.name = name;
+        this.age = age;
+        this.dogFriends = dogFriends;
+
+        // 函数
+        this.eat = function (someThing) {
+            console.log(this.name + "在吃" + someThing);
+        };
+
+        this.run = function (someWhere) {
+            console.log(this.name + "跑" + someWhere);
+        };
+    }
+
+    var  smallDog = new Dog("小黑",1);
+    smallDog.eat("狗粮");
+    smallDog.run("公园");
+    console.log(smallDog.name, smallDog.age);
+</script>
+
+<!--通过传递一个字面量来创建对象 通常使用这种方法 而不是上面的方法-->
+<script type="text/html">
+
+    // 1.构造函数
+    function Dog(option) {
+
+        this.name = option.name;
+        this.age = option.age;
+        this.dogFriends = option.dogFriends;
+
+        // 函数
+        this.eat = function (someThing) {
+            console.log(this.name + "在吃" + someThing);
+        };
+
+        this.run = function (someWhere) {
+            console.log(this.name + "跑" + someWhere);
+        };
+    }
+
+    var  smallDog = new Dog({name:"小花",age:18});
+    smallDog.eat("狗粮");
+    smallDog.run("公园");
+    console.log(smallDog.name, smallDog.age);
+</script>
+
+<!--动态为对象添加属性和方法-->
+<script type="text/html">
+    var obj = {
+        name:"张三",
+        eat:function () {
+            alert("吃饭");
+        }
+    };
+
+    obj.age = 18;// 当向一个没有的属性赋值的时候 会先给该对象添加一个属性
+    console.log(obj.age);
+    console.log(obj.name);
+
+    // obj.eat();
+
+    // 动态为对象添加方法
+    obj.run = function () {
+        alert("跑起来");
+    }
+    obj.run();
+
+</script>
+
+<!--prototype添加属性和方法-->
+<script type="text/html">
+    // 添加方法
+    Array.prototype.eat = function () {
+        alert("吃东西");
+    };
+    var arr = new Array();
+    arr.eat();
+
+    // 添加属性
+    Array.prototype.test = "测试";
+    console.log(arr.test);// 测试
+</script>
+
+<!--
+constructor:返回创建此对象的构造函数 返回的是函数
+-->
+<script type="text/html">
+    var arr1 = new Array();
+    var  arr2 = new Array();
+
+    console.log(arr1.constructor);// ƒ Array() { [native code] }
+    console.log(arr2.constructor);// ƒ Array() { [native code] }
+
+    console.log(arr1.constructor === arr2.constructor);// true
+</script>
+
+
+<script type="text/html">
+
+    function Dog(option) {
+        // 属性
+        this.name = option.name;
+        this.age = option.age;
+        this.friends = option.friends;
+
+        // 方法一： 为对象添加方法
+        // this.eat = function (something) {
+        //     console.log(this.name + "在吃" + something);
+        // };
+        //
+        // this.run = function (someWhere) {
+        //     console.log(this.name + "跑" + someWhere);
+        // };
+    }
+
+    // 方法二 通过prototype为对象添加方法
+    // Dog.prototype.eat = function (something) {
+    //     console.log(this.name + "在吃" + something);
+    // };
+    // Dog.prototype.run = function (someWhere) {
+    //     console.log(this.name + "跑" + someWhere);
+    // };
+
+
+    //方法三：终极写法 prototype也可以接收对象
+    Dog.prototype = {
+        eat: function (something) {
+            console.log(this.name + "在吃" + something);
+        },
+        run: function (someWhere) {
+            console.log(this.name + "跑" + someWhere);
+        },
+    };
+    // prototype添加方法跟方法一的区别：方法一本质上是为每一个对象添加方法
+
+    // 方法三和二的区别在于方法二是为prototype添加一个方法 并不会覆盖原来的prototype，方法三会覆盖原来的prototype 常用方法三 因为自定义类型都是我们自定义的
+
+    var smallDog = new Dog({name:"小黑",age:1});
+    smallDog.run("公园");
+
+    var bigDog = new Dog({name:"大黑",age:10,friends:["小花","二狗子"]});
+    bigDog.run("马路");
+
+    // 方法一 因为每条狗都有run方法 所以run方法只有一个内存地址即可 但是方法一的输出为false 说明是每次都开辟了一个新的内存空间
+    // console.log(smallDog.run === bigDog.run);// false
+
+
+    // 通过prototype添加的方法 会把该方法添加到公共区域中 因此只会有开辟一块内存空间 从内存的角度来说也应该使用prototype
+    console.log(smallDog.run === bigDog.run);// true
+</script>
+
+<!--属性也可以在prototype中-->
+<script>
+
+    function Dog(option) {
+        this._init(option);
+    }
+
+    //方法三：终极写法 prototype也可以接收对象
+    Dog.prototype = {
+        // _init主要是为了区分系统的init方法
+        _init : function(option){
+            // 属性
+            this.name = option.name;
+            this.age = option.age;
+            this.friends = option.friends;
+        },
+        eat: function (something) {
+            console.log(this.name + "在吃" + something);
+        },
+        run: function (someWhere) {
+            console.log(this.name + "跑" + someWhere);
+        },
+    };
+
+
+    var smallDog = new Dog({name:"小黑",age:1});
+    smallDog.run("公园");
+
+    var bigDog = new Dog({name:"大黑",age:10,friends:["小花","二狗子"]});
+    bigDog.run("马路");
+
+    // 方法一 因为每条狗都有run方法 所以run方法只有一个内存地址即可 但是方法一的输出为false 说明是每次都开辟了一个新的内存空间
+    // console.log(smallDog.run === bigDog.run);// false
+
+
+    // 通过prototype添加的方法 会把该方法添加到公共区域中 因此只会有开辟一块内存空间 从内存的角度来说也应该使用prototype
+    console.log(smallDog.run === bigDog.run);// true
+</script>
+
+
+
+</body>
+</html>
