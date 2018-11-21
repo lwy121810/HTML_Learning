@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组高级API</title>
+</head>
+<body>
+
+<!-- sort()函数：
+按升序排列数组：即最小的值在最前面 最大的值在后面
+存在的问题：只能通过第一位排列
+
+-->
+<script>
+    var arr = [1000,80, 100, -90,999];
+    console.log(arr);// [1000, 80, 100, -90, 999]
+
+    console.log(arr.sort());//  [-90, 100, 1000, 80, 999]
+    // 升序 默认是升序
+    console.log(arr.sort(
+        function (a, b) {
+            return a -b;
+        }
+    ));//  [-90, 80, 100, 999, 1000]
+
+
+    // 降序
+    console.log(arr.sort(function (a, b) {
+        return b - a;
+    }));//  [1000, 999, 100, 80, -90]
+</script>
+
+
+<script>
+
+    var arr = [1000,80, 100, -90,999];
+    var removeArr = arr.splice(0,3);
+    console.log(removeArr);
+    console.log(arr);
+
+
+</script>
+
+</body>
+</html>
